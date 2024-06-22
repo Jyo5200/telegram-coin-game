@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tap the Coin</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .coin {
+            width: 100px;
+            height: 100px;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png');
+            background-size: cover;
+            cursor: pointer;
+        }
+        .score {
+            position: absolute;
+            top: 20px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="score">Score: <span id="score">0</span></div>
+    <div class="coin" onclick="tapCoin()"></div>
+
+    <script>
+        let score = 0;
+
+        function tapCoin() {
+            score++;
+            document.getElementById('score').innerText = score;
+            // Send score to bot
+            Telegram.WebApp.sendData(score.toString());
+        }
+
+        Telegram.WebApp.ready();
+    </script>
+</body>
+</html>
